@@ -1,0 +1,10 @@
+#container
+{
+    background-position-x: center;
+    background-repeat: no-repeat;
+    height: auto;
+    min-height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}

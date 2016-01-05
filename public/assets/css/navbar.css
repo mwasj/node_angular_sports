@@ -1,0 +1,136 @@
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu > a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover > a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left > .dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+.navbar_title
+{
+    border-right: 1px solid darkgrey;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: rgb(219, 219, 219) !important;
+}
+
+.application_title
+{
+    border-right: 1px solid darkgrey;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: rgb(219, 219, 219) !important;
+}
+
+.navbar_title:hover
+{
+    color: rgb(61, 61, 61) !important;
+}
+
+.navbar_dropdown
+{
+    margin-top: 10px;
+    color: rgb(219, 219, 219) !important;
+}
+
+.navbar_dropdown:active
+{
+    background-color: darkgrey !important;
+}
+
+.navbar_dropdown:hover
+{
+    color: rgb(61, 61, 61) !important;
+}
+.not_logged_in_links
+{
+    margin-top: 10px;
+    text-decoration: none;
+    color: rgb(219, 219, 219) !important;
+}
+
+.not_logged_in_links:hover
+{
+    color: white !important;
+}
+#navbar_container
+{
+    background-color: rgb(65,75,86);;
+}
+
+.dropdown-menu:after
+{
+    background-color: darkgrey !important;
+}
+
+.logout_button
+{
+    margin-top: 25px;
+    float: right;
+    color: rgb(219, 219, 219) !important;
+}
+
+#navbar_profile_div_container
+{
+    float: right;
+}
+
+#navbar_profile_div
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: rgb(219, 219, 219) !important;
+    float: left;
+}
+
+#navbar_profile_div:hover
+{
+    color: rgb(61, 61, 61) !important;
+}
+
+.profile_avatar
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: right;
+}

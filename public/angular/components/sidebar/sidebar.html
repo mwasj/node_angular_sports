@@ -1,0 +1,18 @@
+<div ng-controller="SidebarController" id="sidebar-container" class="slide-in">
+
+    <div id="sidebar_profile_avatar">
+        <h2 id="sidebar-title">Dashboard</h2>
+        <img src="../../../assets/img/profile-avatar.png" />
+        <div>
+            <a href="#">{{sidebarTitle}}<b class='caret'></b></a>
+        </div>
+    </div>
+
+    <div id="sidebar-items-container">
+        <ul class="navigation">
+            <li class="navigation-items" ng-class="getClass('/dashboard/home')">  <a ui-sref="dashboard.home">Home</a> </li>
+            <li class="navigation-items" ng-class="getClass('/dashboard/test1')"> <a ui-sref="dashboard.test1">Test 1</a> </li>
+            <li class="navigation-items" ng-class="getClass('/dashboard/test2')"> <a ui-sref="dashboard.test2">Test 2</a> </li>
+        </ul>
+    </div>
+</div>

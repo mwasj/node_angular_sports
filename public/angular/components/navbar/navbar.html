@@ -1,0 +1,55 @@
+<div ng-controller="NavbarController" ng-cloak ng-show="isNavbarReady && isNavbarShowing" class="sample-show-hide">
+    <nav class="navbar navbar-default" role="navigation" id="navbar_container">
+        <div class="navbar-header">
+            <a class="navbar-brand application_title" ui-sref="home">Application Name</a>
+        </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
+
+        <!--<ul class="nav navbar-nav" ng-show="userLoggedIn">
+
+            <li dropdown>
+                <a href="#" dropdown-toggle class="navbar_dropdown">
+                    Dropdown
+                    <b class='caret'></b>
+                </a>
+                <tree tree='tree'></tree>
+            </li>
+        </ul>-->
+
+        <div>
+            <div ng-show="!userLoggedIn">
+                <a ui-sref="login" class="navbar-brand not_logged_in_links">Login</a>
+                <a ui-sref="signup" class="navbar-brand not_logged_in_links">Sign up</a>
+            </div>
+
+            <div ng-show="userLoggedIn">
+                <a ui-sref="dashboard.home" class="navbar-brand not_logged_in_links">Dashboard</a>
+            </div>
+        </div>
+        <div id="navbar_profile_div_container">
+             <div class="navbar-header">
+                 <div class="profile_avatar">
+                     <img src="../../../assets/img/profile-avatar.png" />
+                 </div>
+                 <div class="btn-group" uib-dropdown>
+                     <a class="navbar-brand" href="#" id="navbar_profile_div" uib-dropdown-toggle ng-disabled="!userLoggedIn">{{navbarTitle}}
+                         <b class='caret' ng-show="userLoggedIn"></b>
+                     </a>
+
+                     <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button" ng-show="userLoggedIn" ng-disabled="!userLoggedIn">
+                        <li role="menuitem"><a href="#">Profile</a></li>
+                        <li role="menuitem"><a href="#">Settings</a></li>
+                        <li role="menuitem"><a href="#">Friends</a></li>
+                        <li class="divider"></li>
+                        <li role="menuitem"><a href="#" ng-click="logout()">Logout</a></li>
+                     </ul>
+                 </div>
+             </div>
+
+        </div>
+    </div>
+
+    </nav>
+</div>

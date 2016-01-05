@@ -1,0 +1,80 @@
+<html ng-app="app">
+<head>
+    <base href="/">
+
+    <!--Bootstrap CSS
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> -->
+
+    <!-- Local CSS -->
+    <link rel="stylesheet"  type="text/css" href="assets/css/background.css">
+    <link rel="stylesheet"  type="text/css" href="assets/css/sidebar.css">
+    <link rel="stylesheet"  type="text/css" href="assets/css/header.css">
+    <link rel="stylesheet"  type="text/css" href="assets/css/footer.css">
+    <link rel="stylesheet"  type="text/css" href="assets/css/navbar.css">
+    <link rel="stylesheet"  type="text/css" href="assets/css/main.css">
+    <link rel="stylesheet"  type="text/css" href="assets/css/index.css">
+    <link rel="stylesheet"  type="text/css" href="assets/css/animations.css">
+    <link rel="stylesheet"  type="text/css" href="assets/css/dashboard.css">
+    <!--Bootstrap Local CSS-->
+    <link rel="stylesheet"  type="text/css" href="assets/css/bootstrap/bootstrap.min.css">
+
+    <!--Font-awesome Local CSS-->
+    <link rel="stylesheet"  type="text/css" href="assets/css/font-awesome/font-awesome.min.css">
+
+    <!-- Load Angular and Angular UI bootstrap dependencies. -->
+    <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-animate/angular-animate.min.js"></script>
+
+    <script type="text/javascript" src="../bower_components/spin.js/spin.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-spinner/angular-spinner.js"></script>
+
+    <!-- Load Angular and Angular UI router. -->
+    <script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+    <!--Angular app javascript components-->
+    <script src="angular/app.js"></script>
+    <script src="angular/app.routes.js"></script>
+    <script src="angular/app.config.js"></script>
+
+    <!--Authentication module components-->
+    <script src="angular/components/authentication/authentication.module.js"></script>
+    <script src="angular/components/authentication/interceptor.service.js"></script>
+    <script src="angular/components/authentication/authentication.service.js"></script>
+
+    <script src="angular/components/index/index.module.js"></script>
+    <script src="angular/components/index/index.controller.js"></script>
+
+    <script src="angular/components/login/login.module.js"></script>
+    <script src="angular/components/login/login.controller.js"></script>
+
+    <script src="angular/components/signup/signup.module.js"></script>
+    <script src="angular/components/signup/signup.controller.js"></script>
+
+    <script src="angular/components/dashboard/dashboard.module.js"></script>
+    <script src="angular/components/dashboard/dashboard.controller.js"></script>
+    <script src="angular/components/dashboard/dashboard.service.js"></script>
+
+    <script src="angular/components/dashboard/components/home/dashboard.home.module.js"></script>
+    <script src="angular/components/dashboard/components/home/dashboard.home.controller.js"></script>
+
+    <script src="angular/components/navbar/navbar.module.js"></script>
+    <script src="angular/components/navbar/navbar.controller.js"></script>
+    <script src="angular/components/navbar/navbar.directive.js"></script>
+
+    <script src="angular/components/sidebar/sidebar.module.js"></script>
+    <script src="angular/components/sidebar/sidebar.controller.js"></script>
+    <script src="angular/components/sidebar/sidebar.directive.js"></script>
+</head>
+<body ng-cloak>
+    <div id="container">
+        <div ng-include="'angular/components/navbar/navbar.html'"></div>
+        <div ui-view class="view-animate"></div>
+    </div>
+    <div id="footer">
+        <a href='http://www.freepik.com/free-vector/running-man-vector-free-color-splash_715978.htm'>Background designed by Freepik</a>
+    </div>
+</body>
+</html>
