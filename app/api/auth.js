@@ -6,6 +6,7 @@ module.exports = function(app, passport)
 {
     app.get('/logout', passport.ensureAuthenticated, function(req, res) {
         req.logout();
+        res.redirect('/');
     });
 
     app.get('/isloggedin', passport.ensureAuthenticated, function(req, res)

@@ -7,7 +7,8 @@
     angular
         .module('app.navbar', [
             'app.navbar.controllers',
-            'app.navbar.directives'
+            'app.navbar.directives',
+            'app.navbar.services'
         ]);
 
      angular
@@ -15,4 +16,7 @@
 
     angular
         .module('app.navbar.directives', []);
+
+    angular
+        .module('app.navbar.services', []);
 })();

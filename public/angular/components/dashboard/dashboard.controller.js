@@ -21,16 +21,9 @@
         $rootScope.$emit('navbar-hide');
         $scope.visible = true;
 
-        $rootScope.$on('navbar-ready', function()
-        {
-            console.log(tag + "navbar ready received");
-
-        });
-
-        $rootScope.$on('authentication-complete', function(event, successful)
+        $rootScope.$on('user-authentication-state-change', function(event, isLoggedIn)
             {
-                $log.log(tag + "signal received");
-                if (!successful)
+                if (!isLoggedIn)
                 {
                     $location.path('/');
                 }

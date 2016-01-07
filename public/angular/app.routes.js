@@ -8,16 +8,29 @@
   angular
     .module('app.routes', [])
     .config(config)
-     .run(function ($rootScope, $location, AuthenticationService) {
-      // Redirect to login if route requires auth and you're not logged in
-          $rootScope.$on('$stateChangeStart', function (event, toState, toParams)
-          {
-              console.log("Is user logged in? " + AuthenticationService.isLoggedIn().then(function(result) {
-                  console.log("Result: " + result); // 'abc'
-              }));
-              console.log("ROUTE STATE START CHANGE");
-          })
-     });
+    .run(function ($rootScope, $location, AuthenticationService) {
+        // Redirect to login if route requires auth and you're not logged in
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams)
+        {
+            AuthenticationService.isLoggedIn().then(function(isLoggedIn)
+            {
+                if(isLoggedIn && (toState.url === '/login' || toState.url === '/signup'))
+                {
+                    $location.path('/');
+                    return;
+                }
+
+                if(!isLoggedIn && toState.authenticate)
+                {
+                    $rootScope.redirectAfterLogin = $location.path();
+                    $rootScope.returnToState = toState.url;
+                    $rootScope.returnToStateParams = toParams.Id;
+                    $location.path('/login');
+                }
+            });
+        });
+     }
+    );
 
 
   /**
@@ -64,6 +77,14 @@
         .state('dashboard.test2', {
             url: "/test2",
             templateUrl: "/public/angular/components/dashboard/components/test2/test2.html",
+            authenticate: true
+        })
+        .state('dashboard.test2.detail', {
+            url: "/:testId",
+            templateUrl: "/public/angular/components/dashboard/components/test2/test2.html",
+            controller: function($stateParams){
+              $stateParams.testId  //*** Exists! ***//
+            },
             authenticate: true
         });
 

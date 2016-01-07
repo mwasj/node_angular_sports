@@ -29,14 +29,14 @@
             $scope.sidebarTitle = AuthenticationService.getCurrentUser().firstName + " " + AuthenticationService.getCurrentUser().lastName;
         }
 
-        $scope.toggleState = function()
+        $scope.goBack = function()
         {
-            $scope.state = $scope.state;
-        }
+            $location.path($rootScope.beforeDashboardUrl);
+        };
 
-        $rootScope.$on('authentication-complete', function(event, successful)
+        $rootScope.$on('user-authentication-state-change', function(event, isLoggedIn)
             {
-                if (successful)
+                if (isLoggedIn)
                 {
                     $scope.sidebarTitle = AuthenticationService.getCurrentUser().firstName + " " + AuthenticationService.getCurrentUser().lastName;
                 }

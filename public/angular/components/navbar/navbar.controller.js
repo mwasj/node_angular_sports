@@ -15,27 +15,22 @@
     function NavbarController($scope, AuthenticationService, $log, $rootScope, $location)
     {
         $log.log(tag + "created!");
-        $rootScope.isNavbarReady = true;
+        $rootScope.navbarEnabled = false;
+        $rootScope.navbarDataReady = false;
         $rootScope.isNavbarShowing = true;
         $scope.userLoggedIn = false;
         $scope.navbarTitle = "Not logged in";
 
         // Listen for user log in events.
-        $rootScope.$on('authentication-complete', function(event, successful)
+        $rootScope.$on('user-authentication-state-change', function(event, isLoggedIn)
             {
-                if (successful)
-                {
-                    $scope.userLoggedIn = true;
-                }
+                $scope.navbarTitle = isLoggedIn ? AuthenticationService.getCurrentUser().firstName + " " + AuthenticationService.getCurrentUser().lastName : "Not logged in";
 
                 if($location.path().indexOf('dashboard') === -1)
                 {
-                    if(successful)
-                        $scope.navbarTitle = AuthenticationService.getCurrentUser().firstName + " " + AuthenticationService.getCurrentUser().lastName;
-
-                    $log.log("emitting navbar ready");
                     $rootScope.$emit('navbar-ready');
-                    $rootScope.isNavbarReady = true;
+                    $rootScope.navbarEnabled = true;
+                    $rootScope.navbarDataReady = true;
                     $rootScope.isNavbarShowing = true;
                 }
             }
@@ -50,8 +45,7 @@
         {
             if(!$rootScope.isNavbarShowing)
             {
-                $rootScope.isLoggedIn = AuthenticationService.getCurrentUser() !== undefined;
-                $rootScope.isNavbarReady = true;
+                $rootScope.navbarDataReady = true;
                 $rootScope.isNavbarShowing = true;
                 $rootScope.$emit('navbar-ready');
             }

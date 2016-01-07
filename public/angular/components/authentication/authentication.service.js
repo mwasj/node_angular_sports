@@ -13,35 +13,13 @@
     {
         $log.log(tag + "created!");
         var currentUser = undefined;
-        $log.log(tag + "attempting to authenticate the current session.");
-        /*$http.get('/isloggedin').then(authSuccessFn, authErrorFn);
-
-        //Authentication successful
-        function authSuccessFn(data, status, headers, config)
-        {
-            currentUser = data.data.user;
-            $log.log(tag + "session successfully authenticated, saving currently logged in user.");
-            $rootScope.$emit('user-logged-in');
-            $rootScope.$emit('authentication-complete', true);
-            $rootScope.$broadcast('authentication-complete', true);
-        }
-
-        //Authentication failed.
-        function authErrorFn(data, status, headers, config)
-        {
-            $log.log(tag + "session failed to authenticate.");
-            $rootScope.$emit('authentication-complete', false);
-            $rootScope.$broadcast('authentication-complete', false);
-        }*/
 
         return {
             login: login,
             logout: logout,
             signup: signup,
-            test: test,
             getCurrentUser: getCurrentUser,
             isLoggedIn: isLoggedIn,
-            subscribe: subscribe,
             sendLogoutSignal: sendLogoutSignal
         };
 
@@ -53,16 +31,15 @@
                 //Authentication successful
                 function loginSuccessFn(data, status, headers, config)
                 {
-                    console.log(data.data.user);
                     currentUser = data.data.user;
-                    $location.path('/dashboard/home');
-                    $rootScope.$emit('authentication-complete', true);
+                    $location.path(($rootScope.redirectAfterLogin !== undefined) ? $rootScope.redirectAfterLogin : "/");
+                    $rootScope.$emit('user-authentication-state-change', true);
                 }
                 //Authentication failed.
                 function loginErrorFn(data, status, headers, config)
                 {
                     console.log(data.data.message);
-                    $rootScope.$emit('authentication-complete', false);
+                    $rootScope.$emit('user-authentication-state-change', false);
                 }
         }
 
@@ -85,16 +62,12 @@
 
         function logout()
         {
-            currentUser = undefined;
-            return  $http.get('/logout').then(logoutSuccessFn, logoutSuccessFn);
-
-            //Logout successful
-            function logoutSuccessFn(data, status, headers, config)
+            return  $http.get('/logout').then(function(data, status, headers, config)
             {
-                $log.log(tag + "user successfully logged out.");
                 currentUser = undefined;
-                window.location = '/';
-            }
+                $rootScope.$emit('user-authentication-state-change', false);
+                $location.path("/");
+            });
         }
 
         function getCurrentUser()
@@ -115,53 +88,30 @@
         {
             if(currentUser === undefined)
             {
-                console.log("CALLING SERVER FOR USER");
-                return $http.get('/isloggedin').then(function(data, status, headers, config)
-                {
-                    currentUser = data.data.user;
-                    $log.log(tag + "session successfully authenticated, saving currently logged in user.");
-                    return true;
-                    $rootScope.$emit('user-logged-in');
-                    $rootScope.$emit('authentication-complete', true);
-                    $rootScope.$broadcast('authentication-complete', true);
-                }, function(data, status, headers, config)
-            {
-                currentUser = undefined;
-                return false;
-            });
+                return $http.get('/isloggedin').then(
+                    function(data, status, headers, config)
+                    {
+                        currentUser = data.data.user;
+                        $log.log(tag + "session authentication successful. Welcome user " + currentUser.email);
+                        $rootScope.$emit('user-authentication-state-change', true);
+                        return true;
+                    },
+                    function(data, status, headers, config)
+                    {
+                        $log.log(tag + "session authentication failed.");
+                        $rootScope.$emit('user-authentication-state-change', false);
+                        currentUser = undefined;
+                        return false;
+                    });
             }
             else{
-                console.log("RETURNING CACHED USER");
                 return $q.when(true);
             }
-
-        }
-
-        function test()
-        {
-            return $http.get('/api/test').then(loginSuccessFn, loginErrorFn);
-
-                //Authentication successful
-                function loginSuccessFn(data, status, headers, config)
-                {
-                    console.log("Authentication successful");
-                }
-                //Authentication failed.
-                function loginErrorFn(data, status, headers, config) {
-                    console.log("Authentication failure");
-                }
-        }
-
-        function subscribe(scope, callback)
-        {
-            var handler = $rootScope.$on('notifying-service-event', callback);
-            scope.$on('$destroy', handler);
         }
 
         function sendLogoutSignal()
         {
             console.log("Logout signal received! Beginning to emit logout signal to controllers.");
-            $rootScope.$emit('notifying-service-event');
         }
     }
 

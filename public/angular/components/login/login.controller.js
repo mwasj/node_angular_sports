@@ -28,25 +28,10 @@
             $scope.visible = true;
         });
 
-        $rootScope.$on('authentication-complete', function(event, successful)
-        {
-            $log.log(tag + "signal received");
-            if(successful)
-            {
-                $location.path('/dashboard');
-            }
-        });
-
         $scope.login = function()
         {
             console.log("Login function called with: " + $scope.email + " " + $scope.password);
             AuthenticationService.login($scope.email,  $scope.password);
-        }
-
-        $scope.testAuthentication = function()
-        {
-            console.log("Testing authentication");
-            AuthenticationService.test();
         }
 
         $rootScope.$emit('navbar-show');

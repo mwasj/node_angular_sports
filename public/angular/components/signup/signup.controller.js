@@ -30,9 +30,9 @@
             $scope.visible = true;
         });
 
-        $rootScope.$on('authentication-complete', function(event, successful)
+        $rootScope.$on('user-authentication-state-change', function(event, isLoggedIn)
         {
-            if(successful)
+            if(isLoggedIn)
             {
                 $location.path('/dashboard');
             }
