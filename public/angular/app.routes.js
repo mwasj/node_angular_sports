@@ -45,12 +45,23 @@
        $stateProvider.state('home', {
             url: "/",
             controller: "IndexController",
-            templateUrl: "/public/angular/components/index/index.html"
+            templateUrl: "/public/angular/components/index/index.html",
+            views: {
+                content: {
+                    controller: "IndexController",
+                    templateUrl: "/public/angular/components/index/index.html"
+                }
+            }
         })
         .state('login', {
             url: "/login",
             controller: "LoginController",
-            templateUrl: "/public/angular/components/login/login.html"
+            views: {
+                content: {
+                    controller: "LoginController",
+                    templateUrl: "/public/angular/components/login/login.html"
+                }
+            }
         })
        .state('signup', {
             url: "/signup",
@@ -61,7 +72,13 @@
             url: "/dashboard",
             controller: "DashboardController",
             templateUrl: "/public/angular/components/dashboard/dashboard.html",
-            authenticate: true
+            authenticate: true,
+            views: {
+                content: {
+                    controller: "DashboardController",
+                    templateUrl: "/public/angular/components/dashboard/dashboard.html"
+                }
+            }
         })
         .state('dashboard.home', {
             url: "/home",

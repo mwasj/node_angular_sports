@@ -12,11 +12,11 @@
     /**
     * @namespace NavbarController
     */
-    function NavbarController($scope, AuthenticationService, $log, $rootScope, $location)
+    function NavbarController($scope, $log, $rootScope, $location, AuthenticationService)
     {
         $log.log(tag + "created!");
         $rootScope.navbarEnabled = false;
-        $rootScope.navbarDataReady = false;
+        $rootScope.navbarDataReady = true;
         $rootScope.isNavbarShowing = true;
         $scope.userLoggedIn = false;
         $scope.navbarTitle = "Not logged in";
@@ -24,17 +24,19 @@
         // Listen for user log in events.
         $rootScope.$on('user-authentication-state-change', function(event, isLoggedIn)
             {
-                $scope.navbarTitle = isLoggedIn ? AuthenticationService.getCurrentUser().firstName + " " + AuthenticationService.getCurrentUser().lastName : "Not logged in";
 
+                $scope.navbarTitle = isLoggedIn ? AuthenticationService.getCurrentUser().firstName + " " + AuthenticationService.getCurrentUser().lastName : "Not logged in";
                 if($location.path().indexOf('dashboard') === -1)
                 {
                     $rootScope.$emit('navbar-ready');
                     $rootScope.navbarEnabled = true;
+                    $scope.userLoggedIn = isLoggedIn;
                     $rootScope.navbarDataReady = true;
                     $rootScope.isNavbarShowing = true;
                 }
             }
         );
+
 
         $rootScope.$on('navbar-hide', function()
         {

@@ -61,9 +61,9 @@
     <script src="angular/components/dashboard/components/home/dashboard.home.controller.js"></script>
 
     <script src="angular/components/navbar/navbar.module.js"></script>
-    <script src="angular/components/navbar/navbar.service.js"></script>
     <script src="angular/components/navbar/navbar.controller.js"></script>
     <script src="angular/components/navbar/navbar.directive.js"></script>
+    <script src="angular/components/navbar/navbar.service.js"></script>
 
     <script src="angular/components/sidebar/sidebar.module.js"></script>
     <script src="angular/components/sidebar/sidebar.controller.js"></script>
@@ -71,8 +71,9 @@
 </head>
 <body ng-cloak>
     <div id="container">
+        <!--<div ui-view name="nav" class="view-animate"></div>-->
         <div ng-include="'angular/components/navbar/navbar.html'"></div>
-        <div ui-view class="view-animate"></div>
+        <div ui-view name="content"></div>
     </div>
     <div id="footer">
         <a href='http://www.freepik.com/free-vector/running-man-vector-free-color-splash_715978.htm'>Background designed by Freepik</a>

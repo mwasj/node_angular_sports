@@ -8,10 +8,21 @@
         .module('app.navbar.services')
         .factory('NavbarService', NavbarService);
 
-    var tag = "Navbar Service: ";
-    function NavbarService($scope, $rootScope, AuthenticationService) {
+    var tag = "NavbarService: ";
+    function NavbarService($rootScope, $log)
+    {
         $log.log(tag + "created!");
+        var isVisible;
 
-        return {};
+        return {
+            hideNavbar: function()
+            {
+                isVisible = false;
+            },
+            isVisible: function()
+            {
+                return isVisible;
+            }
+        };
     }
 })();

@@ -13,7 +13,7 @@
     {
         $log.log(tag + "created!");
         var currentUser = undefined;
-
+        var alreadyTried;
         return {
             login: login,
             logout: logout,
@@ -99,7 +99,7 @@
                     function(data, status, headers, config)
                     {
                         $log.log(tag + "session authentication failed.");
-                        $rootScope.$emit('user-authentication-state-change', false);
+                        $rootScope.$broadcast('user-authentication-state-change', false);
                         currentUser = undefined;
                         return false;
                     });

@@ -15,7 +15,7 @@
     /**
     * @namespace DashboardController
     */
-    function DashboardController($scope, $rootScope, $log, $location)
+    function DashboardController($scope, $rootScope, $log, $location, AuthenticationService, NavbarService)
     {
         $log.log(tag + "created!");
         $rootScope.$emit('navbar-hide');

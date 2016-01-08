@@ -20,20 +20,12 @@
         $log.log(tag + "created!");
         $scope.email = undefined;
         $scope.password = undefined;
-        $scope.visible = $rootScope.isNavbarReady;
-
-        $rootScope.$on('navbar-ready', function()
-        {
-            console.log("navbar ready received");
-            $scope.visible = true;
-        });
+        $scope.visible = true;
 
         $scope.login = function()
         {
             console.log("Login function called with: " + $scope.email + " " + $scope.password);
             AuthenticationService.login($scope.email,  $scope.password);
         }
-
-        $rootScope.$emit('navbar-show');
     };
 })();

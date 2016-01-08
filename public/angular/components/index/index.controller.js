@@ -18,13 +18,7 @@
     function IndexController($scope, $rootScope, $log, $location, AuthenticationService)
     {
         $log.log(tag + "created!");
-        $scope.visible = $rootScope.isNavbarReady;
-        $rootScope.$on('navbar-ready', function()
-        {
-            console.log("navbar ready received");
-            $scope.visible = true;
-        });
-        $rootScope.$emit('navbar-show');
-    };
+        $scope.visible = true;
+    }
 
 })();
