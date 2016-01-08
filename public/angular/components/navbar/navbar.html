@@ -1,7 +1,7 @@
-<div ng-controller="NavbarController" ng-cloak ng-show="navbarDataReady" class="sample-show-hide">
+<div ng-cloak ng-show="navbarDataReady" class="sample-show-hide">
     <nav class="navbar navbar-default" role="navigation" id="navbar_container">
         <div class="navbar-header">
-            <a class="navbar-brand application_title" ui-sref="home">Application Name</a>
+            <a class="navbar-brand application_title" ui-sref="app.index">Application Name</a>
         </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -20,8 +20,8 @@
 
         <div>
             <div ng-show="!userLoggedIn">
-                <a ui-sref="login" class="navbar-brand not_logged_in_links">Login</a>
-                <a ui-sref="signup" class="navbar-brand not_logged_in_links">Sign up</a>
+                <a ui-sref="app.login" class="navbar-brand not_logged_in_links">Login</a>
+                <a ui-sref="app.signup" class="navbar-brand not_logged_in_links">Sign up</a>
             </div>
 
             <div ng-show="userLoggedIn">

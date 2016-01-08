@@ -9,6 +9,8 @@
     .module('app.routes', [])
     .config(config)
     .run(function ($rootScope, $location, AuthenticationService) {
+
+        console.log("Executing app.run");
         // Redirect to login if route requires auth and you're not logged in
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams)
         {
@@ -39,31 +41,41 @@
   */
   function config($stateProvider, $urlRouterProvider)
   {
+      console.log("Configuring routes.");
       $urlRouterProvider.when('/dashboard', '/dashboard/home');
       $urlRouterProvider.otherwise("/");
 
-       $stateProvider.state('home', {
-            url: "/",
+      $stateProvider
+      .state('app', {
+            abstract: true,
             controller: "IndexController",
             templateUrl: "/public/angular/components/index/index.html",
             views: {
-                content: {
+                nav: {
+                    controller: "NavbarController",
+                    templateUrl: "/public/angular/components/navbar/navbar.html"
+                }
+            }
+      })
+      .state('app.index', {
+            url: '/',
+            views: {
+                'content@': {
                     controller: "IndexController",
                     templateUrl: "/public/angular/components/index/index.html"
                 }
             }
-        })
-        .state('login', {
+      })
+      .state('app.login', {
             url: "/login",
-            controller: "LoginController",
             views: {
-                content: {
+                'content@': {
                     controller: "LoginController",
                     templateUrl: "/public/angular/components/login/login.html"
                 }
             }
         })
-       .state('signup', {
+       .state('app.signup', {
             url: "/signup",
             controller: "SignupController",
             templateUrl: "/public/angular/components/signup/signup.html"
@@ -104,22 +116,5 @@
             },
             authenticate: true
         });
-
-
-      /*$routeProvider.when('/signup', {
-                controller: 'SignupController',
-                templateUrl: '/public/angular/components/signup/signup.html'
-            }).when('/login', {
-                controller: 'LoginController',
-                templateUrl: '/public/angular/components/login/login.html'
-            }).when('/dashboard', {
-                controller: 'DashboardController',
-                controllerAs: 'vm',
-                templateUrl: '/public/angular/components/dashboard/dashboard.html'
-            }).when('/', {
-                controller: 'IndexController',
-                controllerAs: 'vm',
-                templateUrl: '/public/angular/components/index/index.html'
-      });*/
   }
 })();

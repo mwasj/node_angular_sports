@@ -15,7 +15,7 @@
   */
   function config($locationProvider, $httpProvider)
   {
-      console.log("Function config called.")
+      console.log("Configuring interceptors & HTML5 routing.");
       $locationProvider.html5Mode(true);
       $locationProvider.hashPrefix('!');
       $httpProvider.interceptors.push('InterceptorService');

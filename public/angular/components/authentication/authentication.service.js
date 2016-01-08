@@ -13,7 +13,6 @@
     {
         $log.log(tag + "created!");
         var currentUser = undefined;
-        var alreadyTried;
         return {
             login: login,
             logout: logout,
@@ -88,12 +87,12 @@
         {
             if(currentUser === undefined)
             {
+                $log.log(tag + " user data not found, asking server to authenticate.");
                 return $http.get('/isloggedin').then(
                     function(data, status, headers, config)
                     {
                         currentUser = data.data.user;
                         $log.log(tag + "session authentication successful. Welcome user " + currentUser.email);
-                        $rootScope.$emit('user-authentication-state-change', true);
                         return true;
                     },
                     function(data, status, headers, config)
